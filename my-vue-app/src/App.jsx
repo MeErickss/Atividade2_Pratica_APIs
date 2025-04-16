@@ -1,15 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-function App() {
-  const [count, setCount] = useState(0)
+// Importe seus componentes - verifique se você exporta como default
+import { Layout } from './components/Layout';
+import { Pagina404 } from './pages/Pagina404'
+import { Home } from './pages/Home'
 
+
+export function App() {
   return (
-    <div className='w-screen bg-red-500'>
-      a
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          
+          
+          {/* Rota 404 */}
+          <Route path="*" element={<Pagina404 />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
-
-export default App
